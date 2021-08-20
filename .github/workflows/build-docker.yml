@@ -29,7 +29,10 @@ jobs:
 
                         - name: Build docker image
                           run: mvn package docker:build -DskipTests=true
-
+        publish:
+                  needs: build
+                  runs-on: ubuntu-latest
+                  steps:
                         - name: Login in docker registry
                           uses: docker/login-action@v1
                           with:
